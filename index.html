@@ -5,47 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Franchesca</title>
   <style>
+    :root {
+      --ink: #f5f3ff;
+      --muted: #cbc5e7;
+      --violet: #a78bfa;
+      --gold: #fbbf24;
+      --night: #080816;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
+      overflow: hidden;
       display: grid;
       place-items: center;
-      font-family: Arial, sans-serif;
-      background: #f6f4ef;
-      color: #252525;
-      text-align: center;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 18% 18%, #5140a8 0, transparent 28%),
+        radial-gradient(circle at 80% 76%, #af5e49 0, transparent 24%),
+        linear-gradient(135deg, #09091a, #15112c 48%, #080816);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 76vmax;
+      height: 76vmax;
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle,
+          transparent 0 28px,
+          rgba(255, 255, 255, .06) 29px 30px
+        );
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 18s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      inset: -20%;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 42px 42px;
+      transform: perspective(700px) rotateX(64deg) translateY(19%);
+      transform-origin: bottom;
+    }
+
+    @keyframes breathe {
+      from { transform: translate(-50%, -50%) rotate(0deg) scale(.92); }
+      to { transform: translate(-50%, -50%) rotate(180deg) scale(1.08); }
     }
 
     main {
-      max-width: 650px;
-      padding: 48px 24px;
+      position: relative;
+      z-index: 1;
+      width: min(720px, calc(100% - 40px));
+      padding: clamp(42px, 8vw, 82px) clamp(26px, 7vw, 72px);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 30px;
+      background: rgba(15, 13, 37, .62);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .42);
+      backdrop-filter: blur(18px);
+    }
+
+    .paradox {
+      margin: 0 0 22px;
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      margin: 0;
+      font-size: clamp(3.2rem, 10vw, 6.5rem);
+      font-weight: 400;
+      letter-spacing: -.07em;
+      line-height: .9;
+      text-shadow: 3px 3px 0 rgba(167, 139, 250, .5);
+    }
+
+    .line {
+      width: 90px;
+      height: 2px;
+      margin: 32px auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
 
     p {
-      font-size: 1.2rem;
-      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      line-height: 1.7;
     }
 
     a {
       display: inline-block;
-      margin-top: 22px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      background: #24292f;
-      color: white;
+      margin-top: 34px;
+      padding: 14px 22px;
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 999px;
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .04em;
       text-decoration: none;
+      background: linear-gradient(135deg, rgba(167,139,250,.38), rgba(251,191,36,.26));
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    a:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, rgba(167,139,250,.65), rgba(251,191,36,.48));
     }
   </style>
 </head>
 <body>
   <main>
+    <p class="paradox">entre o que se pensa e o que se aprende</p>
     <h1>Franchesca</h1>
-    <p>Este é meu espaço na internet para reunir ideias, estudos, reflexões e aprendizados.</p>
+    <div class="line"></div>
+    <p>
+      Este é meu espaço na internet para reunir ideias, estudos,
+      reflexões e aprendizados.
+    </p>
     <a href="https://github.com/FranchescaCap19">Conheça meu GitHub</a>
   </main>
 </body>
